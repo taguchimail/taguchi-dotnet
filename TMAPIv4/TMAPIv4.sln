@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMAPIv4", "TMAPIv4\TMAPIv4.csproj", "{E6E440A7-6DF7-4D76-B8E5-6C701FA37299}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E6E440A7-6DF7-4D76-B8E5-6C701FA37299}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6E440A7-6DF7-4D76-B8E5-6C701FA37299}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6E440A7-6DF7-4D76-B8E5-6C701FA37299}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6E440A7-6DF7-4D76-B8E5-6C701FA37299}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = TMAPIv4\TMAPIv4.csproj
+	EndGlobalSection
+EndGlobal
