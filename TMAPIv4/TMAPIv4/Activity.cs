@@ -370,7 +370,7 @@ namespace TMAPIv4
 		/// A <see cref="System.String[]"/> containing subscriber IDs to whom the message should be delivered.
 		/// </param>
 		/// <param name="requestContent">
-		/// A <see cref="System.String"/> of XML content for message customization. The requestContent document
+		/// A <see cref="System.String"/> of XML or JSON content for message customization. The requestContent document
 		/// is available to the activity template's stylesheet, in addition to the revision's content. Should be
 		/// null if unused.
 		/// </param>
@@ -396,7 +396,7 @@ namespace TMAPIv4
 		/// A <see cref="Subscriber[]"/> containing subscribers to whom the message should be delivered.
 		/// </param>
 		/// <param name="requestContent">
-		/// A <see cref="System.String"/> of XML content for message customization. The requestContent document
+		/// A <see cref="System.String"/> of XML or JSON content for message customization. The requestContent document
 		/// is available to the activity template's stylesheet, in addition to the revision's content. Should be
 		/// null if unused.
 		/// </param>
@@ -411,6 +411,33 @@ namespace TMAPIv4
 				subscriberIds.Add(s.RecordId);
 			}
 			this.Trigger(subscriberIds.ToArray(), requestContent, test);
+		}
+
+		/// <summary>
+		/// Triggers the activity, causing it to be delivered to all subscribers matching a target expression
+		/// </summary>
+		/// <param name="targetExpression">
+		/// A target expression <see cref="System.String"/> identifying the
+		/// </param>
+		/// <param name="requestContent">
+		/// A <see cref="System.String"/> of XML or JSON content for message customization. The requestContent document
+		/// is available to the activity template's stylesheet, in addition to the revision's content. Should be
+		/// null if unused.
+		/// </param>
+		/// <param name="test">
+		/// A <see cref="System.Boolean"/> determining whether or not to treat this as a test send.
+		/// </param>
+		public virtual void Trigger(string targetExpression, string requestContent, bool test)
+		{
+			JArray data = new JArray();
+			data.Add(new JObject());
+			data[0]["id"] = new JValue(this.RecordId);
+			data[0]["test"] = new JValue(test ? 1 : 0);
+			data[0]["request_content"] = new JValue(requestContent);
+			data[0]["conditions"] = new JObject();
+			data[0]["conditions"]["expression"] = new JValue(targetExpression);
+
+			context.MakeRequest(this.resourceType, "TRIGGER", this.backing["id"].ToString(), data.ToString(), null, null);
 		}
 
 		/// <summary>
@@ -522,4 +549,3 @@ namespace TMAPIv4
 		}
 	}
 }
-
